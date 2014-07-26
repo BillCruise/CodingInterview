@@ -18,7 +18,7 @@ public class Unique {
     }
     
     /**
-     * Determine is the input String s has all unique characters.
+     * Determine if the input String s has all unique characters.
      * This implementation assumes only ASCII characters.
      * @param s
      * @return
