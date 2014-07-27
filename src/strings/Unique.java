@@ -28,9 +28,8 @@ public class Unique {
         char[] chars = s.toCharArray();
         
         for(char c : chars) {
-            int i = (int)c;
-            counts[i]++;
-            if(counts[i] > 1) {
+            counts[c]++;
+            if(counts[c] > 1) {
                 return false;
             }
         }
