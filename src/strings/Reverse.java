@@ -15,7 +15,6 @@ public class Reverse {
         String alphabet = "abcdefghijklmnopqrstuvwxyz";
         System.out.println(alphabet);
         System.out.println(reverse(alphabet));
-
     }
     
     /**
@@ -29,6 +28,7 @@ public class Reverse {
             return s;
         }
         
+        // initialize array and pointers
         char[] c = s.toCharArray();
         int start = 0;
         int end = s.length() - 1;
@@ -39,6 +39,7 @@ public class Reverse {
             c[start] = c[end];
             c[end] = temp;
             
+            // increment pointers
             start++;
             end--;
         }
