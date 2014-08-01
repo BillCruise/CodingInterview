@@ -1,5 +1,7 @@
 package arrays;
 
+import utils.Printer;
+
 /**
  * Given an image represented by an NxN matrix, where each pixel is 4 bytes,
  * write a method to rotate the image by 90 degrees. Can you do this in place?
@@ -22,17 +24,17 @@ public class Rotation {
                          {9, 10, 11, 12},
                          {13, 14, 15, 16} };
         
-        printMatrix(img3);
+        Printer.printMatrix(img3);
         System.out.println();
         rotate90CCW(img3);
-        printMatrix(img3);
+        Printer.printMatrix(img3);
         
         System.out.println();
         
-        printMatrix(img4);
+        Printer.printMatrix(img4);
         System.out.println();
         rotate90CCW(img4);
-        printMatrix(img4);
+        Printer.printMatrix(img4);
     }
     
     /**
@@ -57,19 +59,6 @@ public class Rotation {
                 image[image.length-1-x][image.length-1-y] = image[image.length-1-y][x];
                 image[image.length-1-y][x] = temp;
             }
-        }
-    }
-    
-    /**
-     * Pretty-print convenience function.
-     * @param img
-     */
-    public static void printMatrix(int[][] img) {
-        for(int i = 0; i < img.length; i++) {
-            for(int j = 0; j < img[i].length; j++) {
-                System.out.print(img[i][j] + " ");
-            }
-            System.out.println();
         }
     }
 }
