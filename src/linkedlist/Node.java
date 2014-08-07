@@ -2,6 +2,8 @@ package linkedlist;
 
 /**
  * Implements a very basic singly-linked list.
+ * 
+ * Cracking the Coding Interview chapter 2.
  * @author Bill
  *
  */
@@ -12,6 +14,37 @@ public class Node {
     
     public Node(int d) {
         data = d;
+    }
+    
+    public static void main(String[] args) {
+        Node list = new Node(1);
+        list.appendToTail(1);
+        list.appendToTail(2);
+        list.appendToTail(3);
+        list.appendToTail(5);
+        list.appendToTail(8);
+        list.appendToTail(13);
+        list.print();
+        
+        list = list.deleteNode(list, 1);
+        list.print();
+        
+        list = list.deleteNode(list, 5);
+        list.print();
+    }
+    
+    /**
+     * Print all values in this linked list.
+     */
+    public void print() {
+        Node n = this;
+        System.out.print(n.data + " ");
+        
+        while(n.next != null) {
+            n = n.next;
+            System.out.print(n.data + " ");
+        }
+        System.out.println();
     }
 
     /**
