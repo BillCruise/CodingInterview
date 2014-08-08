@@ -31,6 +31,17 @@ public class Node {
         
         list = list.deleteNode(list, 5);
         list.print();
+        
+        Node list2 = new Node(3);
+        list2.appendToTail(1);
+        list2.appendToTail(2);
+        list2.appendToTail(3);
+        list2.appendToTail(5);
+        list2.appendToTail(8);
+        list2.appendToTail(3);
+        list2.print();
+        list2.removeDuplicates(list2);
+        list2.print();
     }
     
     /**
@@ -81,5 +92,32 @@ public class Node {
             n = n.next;
         }
         return head;
+    }
+    
+    /**
+     * Write code to remove duplicates from an unsorted list.
+     * This implementation uses the "runner" technique.
+     * 
+     * Cracking the Coding Interview question 2.1.
+     * @param head
+     */
+    void removeDuplicates(Node head) {
+        if(head == null) {
+            return;
+        }
+        
+        Node current = head;
+        while(current != null) {
+            Node runner = current;
+            while(runner.next != null) {
+                if(runner.next.data == current.data) {
+                    runner.next = runner.next.next;
+                }
+                else {
+                    runner = runner.next;
+                }
+            }
+            current = current.next;
+        }
     }
 }
