@@ -25,12 +25,15 @@ public class Node {
         list.appendToTail(8);
         list.appendToTail(13);
         list.print();
+        System.out.println(list.kthToLastNode(list, 1));
         
         list = list.deleteNode(list, 1);
         list.print();
+        System.out.println(list.kthToLastNode(list, 3));
         
         list = list.deleteNode(list, 5);
         list.print();
+        System.out.println(list.kthToLastNode(list, 3));
         
         Node list2 = new Node(3);
         list2.appendToTail(1);
@@ -119,5 +122,44 @@ public class Node {
             }
             current = current.next;
         }
+    }
+    
+    /**
+     * Find the kth to last element of a singly linked list.
+     * Iterative approach.
+     * Cracking the Coding Interview question 2.2.
+     * @param head
+     * @param k
+     * @return the value in the kth to last node.
+     * @throws IllegalArgumentException if k is larger than the size of the list.
+     */
+    int kthToLastNode(Node head, int k) {
+        if(k == 0) {
+            throw new IllegalArgumentException("k must be > 0.");
+        }
+        
+        Node current = head;
+        
+        int count = 0;
+        while(current != null) {
+            count++;
+            current = current.next;
+        }
+        
+        if(k > count) {
+            throw new IllegalArgumentException("k is too large.");
+        }
+        
+        int target = count - (k - 1);
+        current = head;
+        count = 0;
+        while(current != null) {
+            count++;
+            if(count == target) {
+                return current.data;
+            }
+            current = current.next;
+        }
+        return current.data;
     }
 }
