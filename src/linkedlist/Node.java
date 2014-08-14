@@ -45,6 +45,20 @@ public class Node {
         list2.print();
         list2.removeDuplicates(list2);
         list2.print();
+        
+        Node list3 = new Node(3);
+        list3.appendToTail(1);
+        list3.appendToTail(4);
+        list3.appendToTail(1);
+        Node five = new Node(5);
+        list3.appendToTail(five);
+        list3.appendToTail(5);
+        list3.appendToTail(9);
+        list3.appendToTail(2);
+        list3.appendToTail(6);
+        list3.print();
+        list3.deleteNode(five);
+        list3.print();
     }
     
     /**
@@ -62,11 +76,19 @@ public class Node {
     }
 
     /**
-     * Appends a new Node to the end of the list.
+     * Appends a new value to the end of the list.
      * @param d
      */
     void appendToTail(int d) {
         Node end = new Node(d);
+        appendToTail(end);
+    }
+    
+    /**
+     * Appends a new Node to the end of the list.
+     * @param end
+     */
+    void appendToTail(Node end) {
         Node n = this;
         while(n.next != null) {
             n = n.next;
@@ -161,5 +183,23 @@ public class Node {
             current = current.next;
         }
         return current.data;
+    }
+    
+    /**
+     * Delete a node in the middle of a singly linked list
+     * given only access to that node.
+     * Cracking the Coding Interview question 2.3.
+     * @param n
+     */
+    boolean deleteNode(Node n) {
+        if(n == null || n.next == null) {
+            return false;
+        }
+        
+        // We can't delete n, because we don't have previous.
+        // Copy the value from the next node and delete that.
+        n.data = n.next.data;
+        n.next = n.next.next;
+        return true;
     }
 }
