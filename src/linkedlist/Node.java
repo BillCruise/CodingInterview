@@ -59,6 +59,22 @@ public class Node {
         list3.print();
         list3.deleteNode(five);
         list3.print();
+        
+        
+        System.out.println("\nTest partitioning...");
+        Node numbers = new Node(10);
+        numbers.appendToTail(9);
+        numbers.appendToTail(8);
+        numbers.appendToTail(7);
+        numbers.appendToTail(6);
+        numbers.appendToTail(5);
+        numbers.appendToTail(4);
+        numbers.appendToTail(3);
+        numbers.appendToTail(2);
+        numbers.appendToTail(1);
+        numbers.print();
+        numbers = numbers.partition(numbers, 5);
+        numbers.print();
     }
     
     /**
@@ -201,5 +217,44 @@ public class Node {
         n.data = n.next.data;
         n.next = n.next.next;
         return true;
+    }
+    
+    /**
+     * Partitions a linked list around a value x,
+     * such that all nodes less than x come before
+     * all nodes greater than or equal to x.
+     * 
+     * Cracking the Coding Interview question 2.4.
+     * @param list
+     * @param x
+     * @return
+     */
+    Node partition(Node list, int x) {
+        Node less = null;
+        Node more = null;
+        
+        Node current = list;
+        while(current != null) {
+            if(current.data < x) {
+                if(less != null) {
+                    less.appendToTail(current.data);
+                }
+                else {
+                    less = new Node(current.data);
+                }
+            }
+            else {
+                if(more != null) {
+                    more.appendToTail(current.data);
+                }
+                else {
+                    more = new Node(current.data);
+                }
+            }
+            current = current.next;
+        }
+        
+        less.appendToTail(more);
+        return less;
     }
 }
