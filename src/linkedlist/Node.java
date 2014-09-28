@@ -75,6 +75,18 @@ public class Node {
         numbers.print();
         numbers = numbers.partition(numbers, 5);
         numbers.print();
+        
+        System.out.println("\nTest sum...");
+        Node a1 = new Node(7);
+        a1.appendToTail(1);
+        a1.appendToTail(6);
+        Node a2 = new Node(5);
+        a2.appendToTail(9);
+        a2.appendToTail(2);
+        Node sum = a1.sum(a1, a2);
+        a1.print();
+        a2.print();
+        sum.print();
     }
     
     /**
@@ -256,5 +268,35 @@ public class Node {
         
         less.appendToTail(more);
         return less;
+    }
+    
+    Node sum(Node list1, Node list2) {
+        return sum(list1, list2, 0);
+    }
+    
+    Node sum(Node list1, Node list2, int carry) {
+        if(list1 == null && list2 == null && carry == 0) {
+            return null;
+        }
+        
+        int value = carry;
+        if(list1 != null) {
+            value += list1.data;
+        }
+        if(list2 != null) {
+            value += list2.data;
+        }
+        Node result = new Node(0);
+        
+        result.data = value % 10;
+        
+        if(list1 != null || list2 != null || value >= 10) {
+            Node next = sum(list1 == null ? null : list1.next,
+                            list2 == null ? null : list2.next,
+                            value >= 10 ? 1 : 0);
+            result.appendToTail(next);
+        }
+        
+        return result;
     }
 }
