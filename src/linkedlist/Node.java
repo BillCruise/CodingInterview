@@ -25,10 +25,12 @@ public class Node {
         list.appendToTail(8);
         list.appendToTail(13);
         list.print();
+        System.out.println("Length: " + list.length(list));
         System.out.println(list.kthToLastNode(list, 1));
         
         list = list.deleteNode(list, 1);
         list.print();
+        System.out.println("Length: " + list.length(list));
         System.out.println(list.kthToLastNode(list, 3));
         
         list = list.deleteNode(list, 5);
@@ -115,6 +117,25 @@ public class Node {
             System.out.print(n.data + " ");
         }
         System.out.println();
+    }
+    
+    /**
+     * Finds the length of the linked list provided.
+     * @param head
+     * @return
+     */
+    public int length(Node head) {
+        if(head == null) {
+            return 0;
+        }
+        
+        int len = 1;
+        Node n = head;
+        while(n.next != null) {
+            len++;
+            n = n.next;
+        }
+        return len;
     }
 
     /**
