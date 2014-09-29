@@ -16,6 +16,10 @@ public class Node {
         data = d;
     }
     
+    public Node() {
+        data = 0;
+    }
+    
     public static void main(String[] args) {
         Node list = new Node(1);
         list.appendToTail(1);
@@ -28,6 +32,11 @@ public class Node {
         System.out.println("Length: " + list.length(list));
         System.out.println(list.kthToLastNode(list, 1));
         
+        System.out.println("\nTesting reverse copy...");
+        Node reverse = list.reverseCopy(list);
+        reverse.print();
+        
+        System.out.println("\nTesting delete(1)...");
         list = list.deleteNode(list, 1);
         list.print();
         System.out.println("Length: " + list.length(list));
@@ -365,5 +374,28 @@ public class Node {
         }
         
         return tortoise;
+    }
+    
+    /**
+     * Create a reversed copy of the linked 
+     * list that starts at the Node provided.
+     * @param head
+     * @return
+     */
+    Node reverseCopy(Node head) {
+        int len = head.length(head);
+        int count = 1;
+        
+        int value = head.kthToLastNode(head, count);
+        Node copy = new Node(value);
+        count++;
+        
+        while(count <= len) {
+            value = head.kthToLastNode(head, count);
+            copy.appendToTail(value);
+            count++;
+        }
+        
+        return copy;
     }
 }
