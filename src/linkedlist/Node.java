@@ -87,6 +87,20 @@ public class Node {
         a1.print();
         a2.print();
         sum.print();
+        
+        System.out.println("\nTest finding a cycle...");
+        Node a = new Node(1);
+        Node b = new Node(2);
+        Node c = new Node(3);
+        Node d = new Node(4);
+        Node e = new Node(5);
+        a.appendToTail(b);
+        a.appendToTail(c);
+        a.appendToTail(d);
+        a.appendToTail(e);
+        a.appendToTail(c);
+        Node s = a.findCycle(a);
+        System.out.println("Value at start of cycle: " + s.data);
     }
     
     /**
@@ -270,11 +284,19 @@ public class Node {
         return less;
     }
     
+    /**
+     * Adds two numbers represented by linked lists and returns
+     * their sum as a linked list. The two numbers are stored
+     * in reverse order.
+     * @param list1
+     * @param list2
+     * @return
+     */
     Node sum(Node list1, Node list2) {
         return sum(list1, list2, 0);
     }
     
-    Node sum(Node list1, Node list2, int carry) {
+    private Node sum(Node list1, Node list2, int carry) {
         if(list1 == null && list2 == null && carry == 0) {
             return null;
         }
@@ -298,5 +320,29 @@ public class Node {
         }
         
         return result;
+    }
+    
+    /**
+     * Find the start of a cycle in a linked list.
+     * Based on Floyd's "tortoise and hare" cycle-finding algorithm.
+     * http://en.wikipedia.org/wiki/Cycle_detection#Tortoise_and_hare
+     * @param head
+     * @return
+     */
+    Node findCycle(Node head) {
+        Node tortoise = head.next;
+        Node hare = head.next.next;
+        while(tortoise != hare) {
+            tortoise = tortoise.next;
+            hare = hare.next.next;
+        }
+        
+        tortoise = head;
+        while(tortoise != hare) {
+            tortoise = tortoise.next;
+            hare = hare.next;
+        }
+        
+        return tortoise;
     }
 }
