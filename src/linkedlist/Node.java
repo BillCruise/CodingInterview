@@ -112,6 +112,17 @@ public class Node {
         a.appendToTail(c);
         Node s = a.findCycle(a);
         System.out.println("Value at start of cycle: " + s.data);
+        
+        System.out.println("\nTesting isPalindrome...");
+        System.out.println(numbers.isPalindrome(numbers));
+        Node pal = new Node(1);
+        pal.appendToTail(6);
+        pal.appendToTail(1);
+        pal.appendToTail(8);
+        pal.appendToTail(1);
+        pal.appendToTail(6);
+        pal.appendToTail(1);
+        System.out.println(pal.isPalindrome(pal));
     }
     
     /**
@@ -397,5 +408,34 @@ public class Node {
         }
         
         return copy;
+    }
+    
+    /**
+     * Tests to see if the given linked list is a palindrome.
+     * Uses the reverse and check approach.
+     * @param list
+     * @return
+     */
+    boolean isPalindrome(Node list) {
+        if(list == null) {
+            return false;
+        }
+        
+        Node reverse = list.reverseCopy(list);
+
+        Node n = list;
+        Node r = reverse;
+        if(n.data != r.data) {
+            return false;
+        }
+        
+        while(n.next != null) {
+            n = n.next;
+            r = r.next;
+            if(n.data != r.data) {
+                return false;
+            }
+        }
+        return true;
     }
 }
