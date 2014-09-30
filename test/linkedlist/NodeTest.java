@@ -158,22 +158,70 @@ public class NodeTest {
 
     @Test
     public void testFindCycle() {
-        fail("Not yet implemented");
+        Node a = new Node(1);
+        Node b = new Node(2);
+        Node c = new Node(3);
+        Node d = new Node(4);
+        Node e = new Node(5);
+        a.appendToTail(b);
+        a.appendToTail(c);
+        a.appendToTail(d);
+        a.appendToTail(e);
+        a.appendToTail(c);
+        
+        Node s = a.findCycle();
+        assertEquals(3, s.data);
     }
 
     @Test
     public void testReverseCopy() {
-        fail("Not yet implemented");
+        Node list1 = new Node(1);
+        list1.appendToTail(2);
+        list1.appendToTail(3);
+        list1.appendToTail(4);
+        list1.appendToTail(5);
+        
+        Node list2 = list1.reverseCopy();
+        
+        assertEquals(list1.data, list2.kthToLastNode(1));
+        assertEquals(list1.next.data, list2.kthToLastNode(2));
+        assertEquals(list1.next.next.data, list2.kthToLastNode(3));
     }
 
     @Test
     public void testIsPalindrome() {
-        fail("Not yet implemented");
+        Node list1 = new Node(1);
+        list1.appendToTail(2);
+        list1.appendToTail(3);
+        list1.appendToTail(4);
+        list1.appendToTail(5);
+        
+        assertFalse(list1.isPalindrome());
+        Node list2 = list1.reverseCopy();
+        
+        list1.appendToTail(list2);
+        assertTrue(list1.isPalindrome());
     }
     
     @Test
     public void testHashCode() {
-        fail("Not yet implemented");
+        Node list1 = new Node(1);
+        list1.appendToTail(1);
+        list1.appendToTail(2);
+        list1.appendToTail(3);
+        list1.appendToTail(5);
+        list1.appendToTail(8);
+        list1.appendToTail(13);
+        
+        Node list2 = new Node(1);
+        list2.appendToTail(1);
+        list2.appendToTail(2);
+        list2.appendToTail(3);
+        list2.appendToTail(5);
+        list2.appendToTail(8);
+        list2.appendToTail(13);
+        
+        assertEquals(list1.hashCode(), list2.hashCode());
     }
 
     @Test

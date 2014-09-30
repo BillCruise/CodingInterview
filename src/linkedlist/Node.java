@@ -34,7 +34,7 @@ public class Node {
         System.out.println(list.kthToLastNode(1));
         
         System.out.println("\nTesting reverse copy...");
-        Node reverse = list.reverseCopy(list);
+        Node reverse = list.reverseCopy();
         reverse.print();
         
         System.out.println("\nTesting delete(1)...");
@@ -113,11 +113,11 @@ public class Node {
         a.appendToTail(d);
         a.appendToTail(e);
         a.appendToTail(c);
-        Node s = a.findCycle(a);
+        Node s = a.findCycle();
         System.out.println("Value at start of cycle: " + s.data);
         
         System.out.println("\nTesting isPalindrome...");
-        System.out.println(numbers.isPalindrome(numbers));
+        System.out.println(numbers.isPalindrome());
         Node pal = new Node(1);
         pal.appendToTail(6);
         pal.appendToTail(1);
@@ -125,7 +125,7 @@ public class Node {
         pal.appendToTail(1);
         pal.appendToTail(6);
         pal.appendToTail(1);
-        System.out.println(pal.isPalindrome(pal));
+        System.out.println(pal.isPalindrome());
     }
     
     /**
@@ -364,15 +364,15 @@ public class Node {
      * @param head
      * @return
      */
-    Node findCycle(Node head) {
-        Node tortoise = head.next;
-        Node hare = head.next.next;
+    Node findCycle() {
+        Node tortoise = this.next;
+        Node hare = this.next.next;
         while(tortoise != hare) {
             tortoise = tortoise.next;
             hare = hare.next.next;
         }
         
-        tortoise = head;
+        tortoise = this;
         while(tortoise != hare) {
             tortoise = tortoise.next;
             hare = hare.next;
@@ -387,16 +387,16 @@ public class Node {
      * @param head
      * @return
      */
-    Node reverseCopy(Node head) {
-        int len = head.length();
+    Node reverseCopy() {
+        int len = this.length();
         int count = 1;
         
-        int value = head.kthToLastNode(count);
+        int value = this.kthToLastNode(count);
         Node copy = new Node(value);
         count++;
         
         while(count <= len) {
-            value = head.kthToLastNode(count);
+            value = this.kthToLastNode(count);
             copy.appendToTail(value);
             count++;
         }
@@ -410,14 +410,10 @@ public class Node {
      * @param list
      * @return
      */
-    boolean isPalindrome(Node list) {
-        if(list == null) {
-            return false;
-        }
-        
-        Node reverse = list.reverseCopy(list);
+    boolean isPalindrome() {
+        Node reverse = this.reverseCopy();
 
-        Node n = list;
+        Node n = this;
         Node r = reverse;
         if(n.data != r.data) {
             return false;
@@ -439,12 +435,6 @@ public class Node {
         int result = 1;
         result = prime * result + data;
         result = prime * result + ((next == null) ? 0 : next.hashCode());
-        Node n = this;
-        while(n.next != null) {
-            n = next;
-            result = prime * result + n.data;
-            result = prime * result + ((n.next == null) ? 0 : n.next.hashCode());
-        }
         return result;
     }
 
