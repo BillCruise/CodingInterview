@@ -14,6 +14,7 @@ public class Node {
     
     public Node(int d) {
         data = d;
+        next = null;
     }
     
     public Node() {
@@ -29,23 +30,24 @@ public class Node {
         list.appendToTail(8);
         list.appendToTail(13);
         list.print();
-        System.out.println("Length: " + list.length(list));
-        System.out.println(list.kthToLastNode(list, 1));
+        System.out.println("Length: " + list.length());
+        System.out.println(list.kthToLastNode(1));
         
         System.out.println("\nTesting reverse copy...");
         Node reverse = list.reverseCopy(list);
         reverse.print();
         
         System.out.println("\nTesting delete(1)...");
-        list = list.deleteNode(list, 1);
+        list = list.deleteNode(1);
         list.print();
-        System.out.println("Length: " + list.length(list));
-        System.out.println(list.kthToLastNode(list, 3));
+        System.out.println("Length: " + list.length());
+        System.out.println(list.kthToLastNode(3));
         
-        list = list.deleteNode(list, 5);
+        list = list.deleteNode(5);
         list.print();
-        System.out.println(list.kthToLastNode(list, 3));
+        System.out.println(list.kthToLastNode(3));
         
+        System.out.println("\nTesting remove duplicates...");
         Node list2 = new Node(3);
         list2.appendToTail(1);
         list2.appendToTail(2);
@@ -54,9 +56,10 @@ public class Node {
         list2.appendToTail(8);
         list2.appendToTail(3);
         list2.print();
-        list2.removeDuplicates(list2);
+        list2.removeDuplicates();
         list2.print();
         
+        System.out.println("\nTesting append to tail...");
         Node list3 = new Node(3);
         list3.appendToTail(1);
         list3.appendToTail(4);
@@ -84,7 +87,7 @@ public class Node {
         numbers.appendToTail(2);
         numbers.appendToTail(1);
         numbers.print();
-        numbers = numbers.partition(numbers, 5);
+        numbers = numbers.partition(5);
         numbers.print();
         
         System.out.println("\nTest sum...");
@@ -94,7 +97,7 @@ public class Node {
         Node a2 = new Node(5);
         a2.appendToTail(9);
         a2.appendToTail(2);
-        Node sum = a1.sum(a1, a2);
+        Node sum = Node.sum(a1, a2);
         a1.print();
         a2.print();
         sum.print();
@@ -144,13 +147,9 @@ public class Node {
      * @param head
      * @return
      */
-    public int length(Node head) {
-        if(head == null) {
-            return 0;
-        }
-        
+    public int length() {
         int len = 1;
-        Node n = head;
+        Node n = this;
         while(n.next != null) {
             len++;
             n = n.next;
@@ -185,7 +184,8 @@ public class Node {
      * @param d
      * @return a linked list without the deleted Node.
      */
-    Node deleteNode(Node head, int d) {
+    Node deleteNode(int d) {
+        Node head = this;
         Node n = head;
         
         if(n.data == d) {
@@ -209,12 +209,8 @@ public class Node {
      * Cracking the Coding Interview question 2.1.
      * @param head
      */
-    void removeDuplicates(Node head) {
-        if(head == null) {
-            return;
-        }
-        
-        Node current = head;
+    void removeDuplicates() {
+        Node current = this;
         while(current != null) {
             Node runner = current;
             while(runner.next != null) {
@@ -233,17 +229,16 @@ public class Node {
      * Find the kth to last element of a singly linked list.
      * Iterative approach.
      * Cracking the Coding Interview question 2.2.
-     * @param head
      * @param k
      * @return the value in the kth to last node.
      * @throws IllegalArgumentException if k is larger than the size of the list.
      */
-    int kthToLastNode(Node head, int k) {
+    int kthToLastNode(int k) {
         if(k == 0) {
             throw new IllegalArgumentException("k must be > 0.");
         }
         
-        Node current = head;
+        Node current = this;
         
         int count = 0;
         while(current != null) {
@@ -256,7 +251,7 @@ public class Node {
         }
         
         int target = count - (k - 1);
-        current = head;
+        current = this;
         count = 0;
         while(current != null) {
             count++;
@@ -292,15 +287,14 @@ public class Node {
      * all nodes greater than or equal to x.
      * 
      * Cracking the Coding Interview question 2.4.
-     * @param list
      * @param x
      * @return
      */
-    Node partition(Node list, int x) {
+    Node partition(int x) {
         Node less = null;
         Node more = null;
         
-        Node current = list;
+        Node current = this;
         while(current != null) {
             if(current.data < x) {
                 if(less != null) {
@@ -333,11 +327,11 @@ public class Node {
      * @param list2
      * @return
      */
-    Node sum(Node list1, Node list2) {
+    public static Node sum(Node list1, Node list2) {
         return sum(list1, list2, 0);
     }
     
-    private Node sum(Node list1, Node list2, int carry) {
+    private static Node sum(Node list1, Node list2, int carry) {
         if(list1 == null && list2 == null && carry == 0) {
             return null;
         }
@@ -394,15 +388,15 @@ public class Node {
      * @return
      */
     Node reverseCopy(Node head) {
-        int len = head.length(head);
+        int len = head.length();
         int count = 1;
         
-        int value = head.kthToLastNode(head, count);
+        int value = head.kthToLastNode(count);
         Node copy = new Node(value);
         count++;
         
         while(count <= len) {
-            value = head.kthToLastNode(head, count);
+            value = head.kthToLastNode(count);
             copy.appendToTail(value);
             count++;
         }
@@ -433,6 +427,52 @@ public class Node {
             n = n.next;
             r = r.next;
             if(n.data != r.data) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    @Override
+    public int hashCode() {
+        final int prime = 31;
+        int result = 1;
+        result = prime * result + data;
+        result = prime * result + ((next == null) ? 0 : next.hashCode());
+        Node n = this;
+        while(n.next != null) {
+            n = next;
+            result = prime * result + n.data;
+            result = prime * result + ((n.next == null) ? 0 : n.next.hashCode());
+        }
+        return result;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj)
+            return true;
+        if (obj == null)
+            return false;
+        if (getClass() != obj.getClass())
+            return false;
+        Node other = (Node) obj;
+        if (data != other.data)
+            return false;
+        if (this.length() != other.length())
+            return false;
+        if (next == null) {
+            if (other.next != null)
+                return false;
+        } else if (!next.equals(other.next))
+            return false;
+        
+        Node n = this;
+        Node o = other;
+        while(n.next != null) {
+            n = n.next;
+            o = o.next;
+            if(n.data != o.data) {
                 return false;
             }
         }
