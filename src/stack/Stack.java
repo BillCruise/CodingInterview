@@ -3,6 +3,7 @@ package stack;
 public class Stack {
 
     private Node top;
+    private int size = 0;
     
     /* 
      * Helper class.
@@ -27,6 +28,7 @@ public class Stack {
         if(top != null) {
             Object item = top.data;
             top = top.next;
+            size--;
             return item;
         }
         return null;
@@ -40,6 +42,7 @@ public class Stack {
         Node t = new Node(item);
         t.next = top;
         top = t;
+        size++;
     }
     
     /**
@@ -49,5 +52,9 @@ public class Stack {
      */
     public Object peek() {
         return top.data;
+    }
+    
+    public int size() {
+        return this.size;
     }
 }

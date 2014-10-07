@@ -4,6 +4,7 @@ public class Queue {
 
     private Node first;
     private Node last;
+    private int size = 0;
     
     /* 
      * Helper class.
@@ -32,6 +33,7 @@ public class Queue {
             last.next = new Node(item);
             last = last.next;
         }
+        size++;
     }
     
     /**
@@ -42,8 +44,13 @@ public class Queue {
         if(first != null) {
             Object item = first.data;
             first = first.next;
+            size--;
             return item;
         }
         return null;
+    }
+    
+    public int size() {
+        return this.size;
     }
 }
