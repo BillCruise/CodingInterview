@@ -27,4 +27,27 @@ public class StackTest {
         assertEquals(3, s.size());
     }
 
+    @Test
+    public void testPeek() {
+        Stack s = new Stack();
+        
+        s.push(1);
+        s.push(2);
+        s.push(3);
+        
+        assertEquals(3, s.peek());
+    }
+    
+    @Test
+    public void testPop() {
+        Stack s = new Stack();
+        
+        s.push(1);
+        s.push(2);
+        s.push(3);
+        
+        assertEquals(3, s.pop());
+        assertEquals(2, s.pop());
+        assertEquals(1, s.pop());
+    }
 }

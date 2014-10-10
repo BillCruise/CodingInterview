@@ -17,7 +17,7 @@ public class QueueTest {
     }
 
     @Test
-    public void test() {
+    public void testSize() {
         Queue q = new Queue();
         assertEquals(0, q.size());
         
@@ -28,4 +28,18 @@ public class QueueTest {
         assertEquals(4, q.size());
     }
 
+    @Test
+    public void testDequeue() {
+        Queue q = new Queue();
+        
+        q.enqueue(1);
+        q.enqueue(2);
+        q.enqueue(3);
+        q.enqueue(4);
+        
+        assertEquals(1, q.dequeue());
+        assertEquals(2, q.dequeue());
+        assertEquals(3, q.dequeue());
+        assertEquals(4, q.dequeue());
+    }
 }
