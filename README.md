@@ -12,6 +12,11 @@ Java solutions to common coding interview questions
 5. Are `ArrayList` operations thread safe?
 6. What are some of common issues with multi-threaded applications? How do you mitigate these issues?
 
+### Design Patterns
+
+1. What is the Singleton design pattern and when would you use it? Describe how you would implement a Singleton class.
+2. Describe how the Observer design pattern is implemented.
+
 ### SQL Questions
 
 1. What are the different types of joins? When do you use each type?
