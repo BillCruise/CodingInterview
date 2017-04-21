@@ -11,6 +11,7 @@ Java solutions to common coding interview questions
 4. What happens when two objects inserted into a `HashMap` have the same key?
 5. Are `ArrayList` operations thread safe?
 6. What are some of common issues with multi-threaded applications? How do you mitigate these issues?
+7. When should you implement `equals` and `hashCode` methods in a Java class?
 
 ### Object-oriented Programming
 
