@@ -26,3 +26,8 @@ Java solutions to common coding interview questions
 
 1. What are the different types of joins? When do you use each type?
 2. What are aggregate functions in SQL? How do you use them?
+
+### Unit Testing
+
+1. How do you create a test suite in JUnit?
+2. How can you prevent a test from running when you run a test suite?
