@@ -12,11 +12,15 @@ Java solutions to common coding interview questions
 5. Are `ArrayList` operations thread safe?
 6. What are some of common issues with multi-threaded applications? How do you mitigate these issues?
 7. When should you implement `equals` and `hashCode` methods in a Java class?
+8. What's the difference between a class and an interface?
+9. What is an abstract class?
+10. What are the uses of the `static` keyword?
 
 ### Object-oriented Programming
 
 1. What are the "three pillars" of object-oriented programming?
 2. Explain inheritance and polymorphism. How are they related?
+3. What does it mean to "program to an interface"?
 
 ### Design Patterns
 
