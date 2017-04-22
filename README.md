@@ -15,6 +15,7 @@ Java solutions to common coding interview questions
 8. What's the difference between a class and an interface?
 9. What is an abstract class?
 10. What are the uses of the `static` keyword?
+11. What is the difference between method *overloading* and method *overriding*.
 
 ### Object-oriented Programming
 
