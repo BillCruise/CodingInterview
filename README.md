@@ -22,6 +22,7 @@ Java solutions to common coding interview questions
 1. What are the "three pillars" of object-oriented programming?
 2. Explain inheritance and polymorphism. How are they related?
 3. What does it mean to "program to an interface"?
+4. What are the SOLID principles?
 
 ### Design Patterns
 
