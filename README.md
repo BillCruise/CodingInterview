@@ -17,6 +17,7 @@ Java solutions to common coding interview questions
 10. What are the uses of the `static` keyword?
 11. What is the difference between method *overloading* and method *overriding*.
 12. What data type would you use to represent currency? What are the drawbacks of using other types?
+13. What data structure can you use if you need to look up objects by a key and you want to iterate through them in order?
 
 ### Object-oriented Programming
 
