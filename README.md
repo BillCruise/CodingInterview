@@ -21,6 +21,7 @@ Java solutions to common coding interview questions
 14. What data structure can you use if you need to look up objects by a key and you want to iterate through them in order?
 15. Explain how you would implement a `HashMap`. What methods would it have? How would it store data internally?
 16. What is autoboxing?
+17. What does the `finalize` method do? When would you override it?
 
 ### Servlets & JSP
 
